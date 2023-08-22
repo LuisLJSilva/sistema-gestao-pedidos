@@ -1,0 +1,9 @@
+Descrição do Pedido: Almoço
+Data e Hora: 21/08/2023 22:19:11
+Confirmado: Sim
+Solicitante: Maria
+Produtos:
+  Suco - R$5.0 - Código: 103 - Gelada - Tamanho: 300.0ml - Marca: Natural
+  Salada - R$10.0 - Código: 104 - Peso: 0.3kg - Vegano - Ingredientes: Verduras
+  Pudim - R$7.0 - Código: 107 - Quantidade: 0.2 - Doce - Informação: Leite condensado
+Total do Pedido: 22.0

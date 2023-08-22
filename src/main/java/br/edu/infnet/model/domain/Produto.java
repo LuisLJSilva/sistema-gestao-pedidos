@@ -11,16 +11,22 @@ public abstract class Produto {
         this.codigo = codigo;
     }
 
-    public abstract void metodoAbstrato(); // Método abstrato para ser implementado nas classes filhas
+    public abstract float calcularDesconto();
 
-    // Getters e setters
+    public String getNome() {
+        return nome;
+    }
+
+    public float getValor() {
+        return valor;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
 
     @Override
     public String toString() {
-        return "Produto{" +
-                "nome='" + nome + '\'' +
-                ", valor=" + valor +
-                ", codigo=" + codigo +
-                '}';
+        return nome + " - R$" + valor + " - Código: " + codigo;
     }
 }
