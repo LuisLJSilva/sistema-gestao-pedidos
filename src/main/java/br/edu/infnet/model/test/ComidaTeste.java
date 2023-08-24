@@ -1,6 +1,8 @@
 package br.edu.infnet.model.test;
 
 import br.edu.infnet.model.domain.Comida;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,18 +13,14 @@ public class ComidaTeste {
 
     public static void main(String[] args) {
         try {
-            List<String> lines = Files.readAllLines(Paths.get("src/main/resources/comidas.json" +
-                    ""));
-            for (String line : lines) {
-                String[] parts = line.split(" - ");
-                String nome = parts[0];
-                float valor = Float.parseFloat(parts[1]);
-                int codigo = Integer.parseInt(parts[2]);
-                float gordura = Float.parseFloat(parts[3]);
-                boolean vegetariana = Boolean.parseBoolean(parts[4]);
-                String ingredientes = parts[5];
-                Comida comida = new Comida(nome, valor, codigo, gordura, vegetariana, ingredientes);
+            String jsonContent = new String(Files.readAllBytes(Paths.get("src/main/resources/comidas.json")));
+            ObjectMapper objectMapper = new ObjectMapper();
+            List<Comida> comidas = objectMapper.readValue(jsonContent, new TypeReference<List<Comida>>() {});
+
+            String saidaArquivo = "src/main/resources/saida_comida.txt";
+            for (Comida comida : comidas) {
                 System.out.println("Comida: " + comida.toString());
+                comida.imprimirComida(saidaArquivo); // Gravando em um arquivo específico
             }
         } catch (IOException e) {
             System.err.println("Erro ao ler o arquivo: " + e.getMessage());

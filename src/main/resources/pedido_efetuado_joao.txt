@@ -1,0 +1,9 @@
+Pedido João:
+Descrição do Pedido: Lanche
+Data e Hora: 2023-08-23T23:55:45.158038
+Confirmado: Não
+Solicitante: Nome: João, CPF: 123.456.789-00, Email: joao@email.com
+Produtos:
+Nome: Cerveja, Valor: R$10.0, Código: 123, Gelada: Sim, Tamanho: 500.0, Marca: Skol
+Nome: Sushi, Valor: R$20.0, Código: 102, Peso: 0.2g, Vegano: Sim, Ingredientes: Arroz, peixe, alga
+Nome: Pudim, Valor: R$10.0, Código: 314, Quantidade: 0.6g, Doce: Sim, Informação: Leite condensado

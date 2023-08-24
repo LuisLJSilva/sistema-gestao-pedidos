@@ -1,0 +1,13 @@
+Nome do Produto: Bolo
+Valor: R$20.0
+Código: 312Quantidade: 1.0
+Tipo: Doce
+Informação: ChocolateNome do Produto: Sorvete
+Valor: R$8.0
+Código: 313Quantidade: 0.5
+Tipo: Doce
+Informação: BaunilhaNome do Produto: Pudim
+Valor: R$10.0
+Código: 314Quantidade: 0.6
+Tipo: Doce
+Informação: Leite condensado

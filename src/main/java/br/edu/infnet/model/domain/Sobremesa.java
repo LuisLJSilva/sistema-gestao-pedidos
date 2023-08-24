@@ -1,5 +1,7 @@
 package br.edu.infnet.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -7,7 +9,9 @@ import java.io.IOException;
 public class Sobremesa extends Produto {
     private float quantidade;
     private boolean doce;
+    @JsonProperty("informacao")
     private String informacao;
+
 
     public Sobremesa() {
     }

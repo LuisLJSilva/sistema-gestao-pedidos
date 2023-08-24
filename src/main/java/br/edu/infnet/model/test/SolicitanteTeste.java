@@ -1,5 +1,8 @@
 package br.edu.infnet.model.test;
+
 import br.edu.infnet.model.domain.Solicitante;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -7,16 +10,17 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class SolicitanteTeste {
+
     public static void main(String[] args) {
         try {
-            List<String> lines = Files.readAllLines(Paths.get("src/main/resources/solicitantes.json"));
-            for (String line : lines) {
-                String[] parts = line.split(" - ");
-                String nome = parts[0];
-                String cpf = parts[1];
-                String email = parts[2];
-                Solicitante solicitante = new Solicitante(nome, cpf, email);
+            String jsonContent = new String(Files.readAllBytes(Paths.get("src/main/resources/solicitantes.json")));
+            ObjectMapper objectMapper = new ObjectMapper();
+            List<Solicitante> solicitantes = objectMapper.readValue(jsonContent, new TypeReference<List<Solicitante>>() {});
+
+            String saidaArquivo = "src/main/resources/saida_solicitante.txt";
+            for (Solicitante solicitante : solicitantes) {
                 System.out.println("Solicitante: " + solicitante.toString());
+                solicitante.imprimirSolicitante(saidaArquivo); // Gravando em um arquivo específico
             }
         } catch (IOException e) {
             System.err.println("Erro ao ler o arquivo: " + e.getMessage());

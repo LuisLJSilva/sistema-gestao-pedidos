@@ -35,7 +35,7 @@ public class Pedido {
             writer.write("Produtos:");
             writer.newLine();
             for (Produto produto : produtos) {
-                writer.write("  " + produto.toString());
+                writer.write("  " + produto.toString() + " - Desconto: R$" + produto.calcularDesconto());
                 writer.newLine();
             }
             writer.write("Total do Pedido: " + calcularTotal());
@@ -48,7 +48,7 @@ public class Pedido {
     public float calcularTotal() {
         float total = 0;
         for (Produto produto : produtos) {
-            total += produto.getValor();
+            total += produto.getValor() - produto.calcularDesconto();
         }
         return total;
     }
@@ -104,7 +104,5 @@ public class Pedido {
                 '}';
     }
 
-    public Produto toProduto() {
-        return new Produto(this.getDescricao(), this.calcularTotal());
-    }
+
 }

@@ -1,13 +1,23 @@
 package br.edu.infnet.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class Solicitante {
+    @JsonProperty("nome")
     private String nome;
+
+    @JsonProperty("cpf")
     private String cpf;
+
+    @JsonProperty("email")
     private String email;
+
+    public Solicitante() {
+    }
 
     public Solicitante(String nome, String cpf, String email) {
         this.nome = nome;

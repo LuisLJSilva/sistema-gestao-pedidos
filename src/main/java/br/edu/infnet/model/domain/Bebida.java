@@ -1,5 +1,8 @@
 package br.edu.infnet.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,8 +16,8 @@ public class Bebida extends Produto {
     public Bebida() {
     }
 
-
-    public Bebida(String nome, float valor, int codigo, boolean gelada, float tamanho, String marca) {
+    @JsonCreator
+    public Bebida(@JsonProperty("nome") String nome, @JsonProperty("valor") float valor, @JsonProperty("codigo") int codigo, @JsonProperty("gelada") boolean gelada, @JsonProperty("tamanho") float tamanho, @JsonProperty("marca") String marca) {
         super(nome, valor, codigo);
         this.gelada = gelada;
         if (tamanho <= 0) {

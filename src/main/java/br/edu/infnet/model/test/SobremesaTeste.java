@@ -1,6 +1,8 @@
 package br.edu.infnet.model.test;
 
 import br.edu.infnet.model.domain.Sobremesa;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,17 +13,14 @@ public class SobremesaTeste {
 
     public static void main(String[] args) {
         try {
-            List<String> lines = Files.readAllLines(Paths.get("src/main/resources/sobremesas.jsonjson"));
-            for (String line : lines) {
-                String[] parts = line.split(" - ");
-                String nome = parts[0];
-                float valor = Float.parseFloat(parts[1]);
-                int codigo = Integer.parseInt(parts[2]);
-                float gordura = Float.parseFloat(parts[3]);
-                boolean gelada = Boolean.parseBoolean(parts[4]);
-                String sabor = parts[5];
-                Sobremesa sobremesa = new Sobremesa(nome, valor, codigo, gordura, gelada, sabor);
+            String jsonContent = new String(Files.readAllBytes(Paths.get("src/main/resources/sobremesas.json")));
+            ObjectMapper objectMapper = new ObjectMapper();
+            List<Sobremesa> sobremesas = objectMapper.readValue(jsonContent, new TypeReference<List<Sobremesa>>() {});
+
+            String saidaArquivo = "src/main/resources/saida_sobremesa.txt";
+            for (Sobremesa sobremesa : sobremesas) {
                 System.out.println("Sobremesa: " + sobremesa.toString());
+                sobremesa.imprimirSobremesa(saidaArquivo); // Gravando em um arquivo específico
             }
         } catch (IOException e) {
             System.err.println("Erro ao ler o arquivo: " + e.getMessage());

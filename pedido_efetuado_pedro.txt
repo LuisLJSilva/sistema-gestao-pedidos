@@ -1,0 +1,3 @@
+Pedido Pedro:
+Descrição do Pedido: Almoço
+Data e Hora: 2023-08-23T23:43:16.563310

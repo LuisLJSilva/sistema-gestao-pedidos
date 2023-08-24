@@ -1,0 +1,10 @@
+Nome da Comida: Lasanha
+Peso: 0.5kg
+Vegano: Não
+Ingredientes: Massa, queijo, molhoNome da Comida: Sushi
+Peso: 0.2kg
+Vegano: Sim
+Ingredientes: Arroz, peixe, algaNome da Comida: Pizza
+Peso: 0.4kg
+Vegano: Não
+Ingredientes: Massa, queijo, tomate
