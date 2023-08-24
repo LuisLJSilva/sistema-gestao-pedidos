@@ -1,0 +1,36 @@
+{
+  "descricao": "Almoço",
+  "data": "2023-08-23T13:30:00",
+  "web": true,
+  "solicitante": {
+    "nome": "Pedro",
+    "cpf": "111.222.333-44",
+    "email": "pedro@email.com"
+  },
+  "produtos": [
+    {
+      "nome": "Água",
+      "valor": 2.0,
+      "codigo": 109,
+      "gelada": false,
+      "tamanho": 500.0,
+      "marca": "Mineral"
+    },
+    {
+      "nome": "Pizza",
+      "valor": 12.0,
+      "codigo": 103,
+      "peso": 0.4,
+      "vegano": false,
+      "ingredientes": "Massa, queijo, tomate"
+    },
+    {
+      "nome": "Bolo",
+      "valor": 20.0,
+      "codigo": 102,
+      "quantidade": 1.0,
+      "doce": true,
+      "informacao": "Chocolate"
+    }
+  ]
+}

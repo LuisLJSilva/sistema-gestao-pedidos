@@ -6,11 +6,8 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Pedido {
-    private static final Logger logger = Logger.getLogger(Pedido.class.getName());
     private String descricao;
     private LocalDateTime data;
     private boolean web;
@@ -25,8 +22,8 @@ public class Pedido {
         this.produtos = produtos;
     }
 
-    public void imprimirPedido(String arquivo) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(arquivo))) {
+    public void imprimirPedido(String arquivo) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(arquivo, true))) {
             writer.write("Descrição do Pedido: " + descricao);
             writer.newLine();
             writer.write("Data e Hora: " + data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")));
@@ -42,16 +39,16 @@ public class Pedido {
                 writer.newLine();
             }
             writer.write("Total do Pedido: " + calcularTotal());
-            writer.newLine();
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "Erro ao imprimir o pedido", e);
+            System.err.println("Erro ao gravar o pedido no arquivo: " + e.getMessage());
         }
     }
 
-    private float calcularTotal() {
+
+    public float calcularTotal() {
         float total = 0;
         for (Produto produto : produtos) {
-            total += produto.getValor(); // ou outra lógica para calcular o valor
+            total += produto.getValor();
         }
         return total;
     }
@@ -105,5 +102,9 @@ public class Pedido {
                 ", solicitante=" + solicitante +
                 ", produtos=" + produtos +
                 '}';
+    }
+
+    public Produto toProduto() {
+        return new Produto(this.getDescricao(), this.calcularTotal());
     }
 }

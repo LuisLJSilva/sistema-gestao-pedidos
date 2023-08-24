@@ -1,58 +1,113 @@
 package br.edu.infnet.model.test;
 
-import br.edu.infnet.model.domain.Produto;
-import br.edu.infnet.model.domain.Pedido;
-import br.edu.infnet.model.domain.Solicitante;
 import br.edu.infnet.model.domain.Bebida;
 import br.edu.infnet.model.domain.Comida;
+import br.edu.infnet.model.domain.Pedido;
+import br.edu.infnet.model.domain.Produto;
 import br.edu.infnet.model.domain.Sobremesa;
+import br.edu.infnet.model.domain.Solicitante;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PedidoTeste {
-    public static void main(String[] args) {
-        Solicitante solicitanteMaria = new Solicitante("Maria", "987.654.321-00", "maria@email.com");
-        Bebida suco = new Bebida("Suco", 5.0f, 103, true, 300f, "Natural");
-        Comida salada = new Comida("Salada", 10.0f, 104, 0.3f, true, "Verduras");
-        Sobremesa pudim = new Sobremesa("Pudim", 7.0f, 107, 0.2f, true, "Leite condensado");
 
-        List<Produto> produtosMaria = new ArrayList<>();
-        produtosMaria.add(suco);
-        produtosMaria.add(salada);
-        produtosMaria.add(pudim);
+    public static <Bebida> List<Bebida> lerBebidas(String path) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<Bebida> bebidas = objectMapper.readValue(Paths.get(path).toFile(), new TypeReference<List<Bebida>>() {});
+        return bebidas;
+    }
 
-        Pedido pedidoMaria = new Pedido("Almoço", LocalDateTime.now(), true, solicitanteMaria, produtosMaria);
-        System.out.println("Pedido Maria: " + pedidoMaria.toString());
-        pedidoMaria.imprimirPedido("pedido_maria.txt");
+    public static List<Comida> lerComidas(String path) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<Comida> comidas = objectMapper.readValue(Paths.get(path).toFile(), new TypeReference<List<Comida>>() {});
+        return comidas;
+    }
+
+    public static List<Sobremesa> lerSobremesas(String path) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<Sobremesa> sobremesas = objectMapper.readValue(Paths.get(path).toFile(), new TypeReference<List<Sobremesa>>() {});
+        return sobremesas;
+    }
+
+
+    public static void main(String[] args) throws IOException {
+        String resourcesPath = "src/main/resources/";
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        List<Bebida> bebidas = objectMapper.readValue(Paths.get(resourcesPath + "bebidas.json").toFile(), new TypeReference<List<Bebida>>() {});
+        List<Comida> comidas = objectMapper.readValue(Paths.get(resourcesPath + "comidas.json").toFile(), new TypeReference<List<Comida>>() {});
+        List<Sobremesa> sobremesas = objectMapper.readValue(Paths.get(resourcesPath + "sobremesas.json").toFile(), new TypeReference<List<Sobremesa>>() {});
+
+        try {
+            bebidas = lerBebidas(resourcesPath +"bebidas.json");
+            comidas = lerComidas(resourcesPath+ "comidas.json");
+            sobremesas = lerSobremesas(resourcesPath+ "sobremesas.json");
+        } catch (IOException e) {
+            System.err.println("Erro ao ler os arquivos JSON: " + e.getMessage());
+        }
 
         Solicitante solicitanteJoao = new Solicitante("João", "123.456.789-00", "joao@email.com");
-        Bebida cafe = new Bebida("Café", 3.0f, 105, false, 150f, "Expresso");
-        Comida sanduiche = new Comida("Sanduíche", 8.0f, 106, 0.2f, false, "Pão, queijo, presunto");
-        Sobremesa bolo = new Sobremesa("Bolo", 6.0f, 108, 0.3f, true, "Chocolate");
-
         List<Produto> produtosJoao = new ArrayList<>();
-        produtosJoao.add(cafe);
-        produtosJoao.add(sanduiche);
-        produtosJoao.add(bolo);
-
+        produtosJoao.add(bebidas.get(0));
+        produtosJoao.add(comidas.get(1));
+        produtosJoao.add(sobremesas.get(2));
         Pedido pedidoJoao = new Pedido("Lanche", LocalDateTime.now(), false, solicitanteJoao, produtosJoao);
-        System.out.println("Pedido João: " + pedidoJoao.toString());
-        pedidoJoao.imprimirPedido("pedido_joao.txt");
+
+        Solicitante solicitanteMaria = new Solicitante("Maria", "321.654.987-00", "maria@email.com");
+        List<Produto> produtosMaria = new ArrayList<>();
+        produtosMaria.add(bebidas.get(1));
+        produtosMaria.add(comidas.get(0));
+        produtosMaria.add(sobremesas.get(1));
+        Pedido pedidoMaria = new Pedido("Almoço", LocalDateTime.now(), true, solicitanteMaria, produtosMaria);
 
         Solicitante solicitantePedro = new Solicitante("Pedro", "111.222.333-44", "pedro@email.com");
-        Bebida agua = new Bebida("Água", 2.0f, 109, false, 500f, "Mineral");
-        Comida arrozFeijao = new Comida("Arroz e Feijão", 12.0f, 110, 0.4f, true, "Arroz, feijão");
-        Sobremesa sorvete = new Sobremesa("Sorvete", 5.0f, 111, 0.3f, false, "Morango");
-
         List<Produto> produtosPedro = new ArrayList<>();
-        produtosPedro.add(agua);
-        produtosPedro.add(arrozFeijao);
-        produtosPedro.add(sorvete);
+        produtosPedro.add(bebidas.get(0));
+        produtosPedro.add(comidas.get(1));
+        produtosPedro.add(sobremesas.get(2));
+        Pedido pedidoPedro = new Pedido("Almoço", LocalDateTime.now(), false, solicitantePedro, produtosPedro);
 
-        Pedido pedidoPedro = new Pedido("Almoço", LocalDateTime.now(), true, solicitantePedro, produtosPedro);
-        System.out.println("Pedido Pedro: " + pedidoPedro.toString());
-        pedidoPedro.imprimirPedido("pedido_pedro.txt");
 
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("pedido_efetuado_joao.txt"))) {
+            writer.write("Pedido João:");
+            writer.newLine();
+            writer.write("Descrição do Pedido: " + pedidoJoao.getDescricao());
+            writer.newLine();
+            writer.write("Data e Hora: " + pedidoJoao.getData());
+        } catch (IOException e) {
+            System.err.println("Erro ao escrever o arquivo com layout diferente: " + e.getMessage());
+        }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("pedido_efetuado_maria.txt"))) {
+            writer.write("Pedido Maria:");
+            writer.newLine();
+            writer.write("Descrição do Pedido: " + pedidoMaria.getDescricao());
+            writer.newLine();
+            writer.write("Data e Hora: " + pedidoMaria.getData());
+            // Continuar escrevendo as informações conforme necessário
+        } catch (IOException e) {
+            System.err.println("Erro ao escrever o arquivo com layout diferente: " + e.getMessage());
+        }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("pedido_efetuado_pedro.txt"))) {
+            writer.write("Pedido Pedro:");
+            writer.newLine();
+            writer.write("Descrição do Pedido: " + pedidoPedro.getDescricao());
+            writer.newLine();
+            writer.write("Data e Hora: " + pedidoPedro.getData());
+            // Continuar escrevendo as informações conforme necessário
+        } catch (IOException e) {
+            System.err.println("Erro ao escrever o arquivo com layout diferente: " + e.getMessage());
+        }
     }
 }

@@ -2,15 +2,29 @@ package br.edu.infnet.model.test;
 
 import br.edu.infnet.model.domain.Sobremesa;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+
 public class SobremesaTeste {
+
     public static void main(String[] args) {
-        Sobremesa bolo = new Sobremesa("Bolo", 20.0f, 102, 1.0f, true, "Chocolate");
-        System.out.println("Sobremesa 1: " + bolo.toString());
-
-        Sobremesa sorvete = new Sobremesa("Sorvete", 8.0f, 103, 0.5f, true, "Baunilha");
-        System.out.println("Sobremesa 2: " + sorvete.toString());
-
-        Sobremesa pudim = new Sobremesa("Pudim", 10.0f, 104, 0.6f, true, "Leite condensado");
-        System.out.println("Sobremesa 3: " + pudim.toString());
+        try {
+            List<String> lines = Files.readAllLines(Paths.get("src/main/resources/sobremesas.jsonjson"));
+            for (String line : lines) {
+                String[] parts = line.split(" - ");
+                String nome = parts[0];
+                float valor = Float.parseFloat(parts[1]);
+                int codigo = Integer.parseInt(parts[2]);
+                float gordura = Float.parseFloat(parts[3]);
+                boolean gelada = Boolean.parseBoolean(parts[4]);
+                String sabor = parts[5];
+                Sobremesa sobremesa = new Sobremesa(nome, valor, codigo, gordura, gelada, sabor);
+                System.out.println("Sobremesa: " + sobremesa.toString());
+            }
+        } catch (IOException e) {
+            System.err.println("Erro ao ler o arquivo: " + e.getMessage());
+        }
     }
 }

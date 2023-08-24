@@ -1,20 +1,52 @@
 package br.edu.infnet.model.domain;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+
 public class Bebida extends Produto {
     private boolean gelada;
     private float tamanho;
     private String marca;
 
+    public Bebida() {
+    }
+
+
     public Bebida(String nome, float valor, int codigo, boolean gelada, float tamanho, String marca) {
         super(nome, valor, codigo);
         this.gelada = gelada;
-        this.tamanho = tamanho;
+        if (tamanho <= 0) {
+            this.tamanho = 1;
+        } else {
+            this.tamanho = tamanho;
+        }
         this.marca = marca;
     }
 
     @Override
     public float calcularDesconto() {
-        return gelada ? 0.1f * getValor() : 0;
+        if (gelada) {
+            return 0.1f * getValor();
+        } else {
+            return 0;
+        }
+    }
+
+    public void imprimirBebida(String arquivo) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(arquivo, true))) {
+            writer.write("Nome da Bebida: " + getNome());
+            writer.newLine();
+            writer.write("Gelada: " + (gelada ? "Sim" : "Não"));
+            writer.newLine();
+            writer.write("Tamanho: " + tamanho + "ml");
+            writer.newLine();
+            writer.write("Marca: " + marca);
+        } catch (IOException e) {
+            System.err.println("Erro ao gravar a bebida no arquivo: " + e.getMessage());
+            throw e;
+        }
     }
 
     public boolean isGelada() {
@@ -29,9 +61,7 @@ public class Bebida extends Produto {
         return tamanho;
     }
 
-    public void setTamanho(float tamanho) {
-        this.tamanho = tamanho;
-    }
+    public void setTamanho(float tamanho) { this.tamanho = tamanho; }
 
     public String getMarca() {
         return marca;

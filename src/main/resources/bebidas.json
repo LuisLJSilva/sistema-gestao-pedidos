@@ -1,0 +1,26 @@
+[
+  {
+    "nome": "Cerveja",
+    "valor": 10.0,
+    "codigo": 123,
+    "gelada": true,
+    "tamanho": 500,
+    "marca": "Skol"
+  },
+  {
+    "nome": "Refrigerante",
+    "valor": 5.0,
+    "codigo": 456,
+    "gelada": false,
+    "tamanho": 350,
+    "marca": "Coca-Cola"
+  },
+  {
+    "nome": "Água",
+    "valor": 2.0,
+    "codigo": 789,
+    "gelada": false,
+    "tamanho": 200,
+    "marca": "Crystal"
+  }
+]

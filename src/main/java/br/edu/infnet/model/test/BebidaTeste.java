@@ -2,16 +2,30 @@ package br.edu.infnet.model.test;
 
 import br.edu.infnet.model.domain.Bebida;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+
+
 public class BebidaTeste {
 
     public static void main(String[] args) {
-        Bebida cerveja = new Bebida("Cerveja", 10.0f, 123, true, 500f, "Skol");
-        System.out.println("Bebida 1: " + cerveja.toString());
-
-        Bebida refrigerante = new Bebida("Refrigerante", 5.0f, 456, false, 350f, "Coca-Cola");
-        System.out.println("Bebida 2: " + refrigerante.toString());
-
-        Bebida agua = new Bebida("Água", 2.0f, 789, false, 200f, "Crystal");
-        System.out.println("Bebida 3: " + agua.toString());
+        try {
+            List<String> lines = Files.readAllLines(Paths.get("src/main/resources/bebidas.json"));
+            for (String line : lines) {
+                String[] parts = line.split(" - ");
+                String nome = parts[0];
+                float valor = Float.parseFloat(parts[1]);
+                int codigo = Integer.parseInt(parts[2]);
+                boolean alcoolica = Boolean.parseBoolean(parts[3]);
+                float volume = Float.parseFloat(parts[4]);
+                String marca = parts[5];
+                Bebida bebida = new Bebida(nome, valor, codigo, alcoolica, volume, marca);
+                System.out.println("Bebida: " + bebida.toString());
+            }
+        } catch (IOException e) {
+            System.err.println("Erro ao ler o arquivo: " + e.getMessage());
+        }
     }
 }

@@ -1,0 +1,36 @@
+{
+  "descricao": "Almoço",
+  "data": "2023-08-23T12:00:00",
+  "web": true,
+  "solicitante": {
+    "nome": "Maria",
+    "cpf": "321.654.987-00",
+    "email": "maria@email.com"
+  },
+  "produtos": [
+    {
+      "nome": "Refrigerante",
+      "valor": 5.0,
+      "codigo": 456,
+      "gelada": false,
+      "tamanho": 350.0,
+      "marca": "Coca-Cola"
+    },
+    {
+      "nome": "Lasanha",
+      "valor": 15.0,
+      "codigo": 101,
+      "peso": 0.5,
+      "vegano": false,
+      "ingredientes": "Massa, queijo, molho"
+    },
+    {
+      "nome": "Sushi",
+      "valor": 20.0,
+      "codigo": 102,
+      "peso": 0.2,
+      "vegano": true,
+      "ingredientes": "Arroz, peixe, alga"
+    }
+  ]
+}

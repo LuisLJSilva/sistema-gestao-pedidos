@@ -1,0 +1,26 @@
+[
+  {
+    "nome": "Lasanha",
+    "valor": 15.0,
+    "codigo": 101,
+    "peso": 0.5,
+    "vegano": false,
+    "ingredientes": "Massa, queijo, molho"
+  },
+  {
+    "nome": "Sushi",
+    "valor": 20.0,
+    "codigo": 102,
+    "peso": 0.2,
+    "vegano": true,
+    "ingredientes": "Arroz, peixe, alga"
+  },
+  {
+    "nome": "Pizza",
+    "valor": 12.0,
+    "codigo": 103,
+    "peso": 0.4,
+    "vegano": false,
+    "ingredientes": "Massa, queijo, tomate"
+  }
+]

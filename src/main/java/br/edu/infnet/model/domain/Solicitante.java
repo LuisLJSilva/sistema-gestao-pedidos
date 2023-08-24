@@ -1,5 +1,9 @@
 package br.edu.infnet.model.domain;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Solicitante {
     private String nome;
     private String cpf;
@@ -9,6 +13,19 @@ public class Solicitante {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
+    }
+
+    public void imprimirSolicitante(String arquivo) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(arquivo, true))) {
+            writer.write("Nome: " + nome);
+            writer.newLine();
+            writer.write("CPF: " + cpf);
+            writer.newLine();
+            writer.write("Email: " + email);
+            writer.newLine();
+        } catch (IOException e) {
+            System.err.println("Erro ao gravar o solicitante no arquivo: " + e.getMessage());
+        }
     }
 
     public String getNome() {

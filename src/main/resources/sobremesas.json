@@ -1,0 +1,26 @@
+[
+  {
+    "nome": "Bolo",
+    "valor": 20.0,
+    "codigo": 312,
+    "quantidade": 1.0,
+    "doce": true,
+    "informacao": "Chocolate"
+  },
+  {
+    "nome": "Sorvete",
+    "valor": 8.0,
+    "codigo": 313,
+    "quantidade": 0.5,
+    "doce": true,
+    "informacao": "Baunilha"
+  },
+  {
+    "nome": "Pudim",
+    "valor": 10.0,
+    "codigo": 314,
+    "quantidade": 0.6,
+    "doce": true,
+    "informacao": "Leite condensado"
+  }
+]

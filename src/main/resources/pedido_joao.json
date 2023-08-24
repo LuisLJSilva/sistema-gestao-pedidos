@@ -1,0 +1,36 @@
+{
+  "descricao": "Lanche",
+  "data": "2023-08-23T10:30:00",
+  "web": false,
+  "solicitante": {
+    "nome": "João",
+    "cpf": "123.456.789-00",
+    "email": "joao@email.com"
+  },
+  "produtos": [
+    {
+      "nome": "Café",
+      "valor": 3.0,
+      "codigo": 105,
+      "gelada": false,
+      "tamanho": 150.0,
+      "marca": "Expresso"
+    },
+    {
+      "nome": "Sanduíche",
+      "valor": 8.0,
+      "codigo": 106,
+      "peso": 0.2,
+      "vegano": false,
+      "ingredientes": "Pão, queijo, presunto"
+    },
+    {
+      "nome": "Bolo",
+      "valor": 6.0,
+      "codigo": 108,
+      "quantidade": 1.0,
+      "doce": true,
+      "informacao": "Chocolate"
+    }
+  ]
+}
