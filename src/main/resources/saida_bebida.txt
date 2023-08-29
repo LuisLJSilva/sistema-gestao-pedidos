@@ -7,13 +7,4 @@ Tamanho: 350.0ml
 Marca: Coca-ColaNome da Bebida: Água
 Gelada: Não
 Tamanho: 200.0ml
-Marca: CrystalNome da Bebida: Cerveja
-Gelada: Sim
-Tamanho: 500.0ml
-Marca: SkolNome da Bebida: Refrigerante
-Gelada: Não
-Tamanho: 350.0ml
-Marca: Coca-ColaNome da Bebida: Água
-Gelada: Não
-Tamanho: 200.0ml
 Marca: Crystal

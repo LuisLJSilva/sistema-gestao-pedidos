@@ -20,7 +20,7 @@ public class ComidaTeste {
             String saidaArquivo = "src/main/resources/saida_comida.txt";
             for (Comida comida : comidas) {
                 System.out.println("Comida: " + comida.toString());
-                comida.imprimirComida(saidaArquivo); // Gravando em um arquivo específico
+                comida.imprimirComida(saidaArquivo);
             }
         } catch (IOException e) {
             System.err.println("Erro ao ler o arquivo: " + e.getMessage());

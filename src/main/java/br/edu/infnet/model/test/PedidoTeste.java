@@ -7,6 +7,7 @@ import br.edu.infnet.model.domain.Produto;
 import br.edu.infnet.model.domain.Sobremesa;
 import br.edu.infnet.model.domain.Solicitante;
 
+import br.edu.infnet.model.domain.exceptions.SolicitanteInvalidoException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -20,19 +21,9 @@ import java.util.List;
 
 public class PedidoTeste {
 
-    public static List<Bebida> lerBebidas(String path) throws IOException {
+    public static <T> List<T> lerProdutos(String path, TypeReference<List<T>> type) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.readValue(Paths.get(path).toFile(), new TypeReference<List<Bebida>>() {});
-    }
-
-    public static List<Comida> lerComidas(String path) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.readValue(Paths.get(path).toFile(), new TypeReference<List<Comida>>() {});
-    }
-
-    public static List<Sobremesa> lerSobremesas(String path) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.readValue(Paths.get(path).toFile(), new TypeReference<List<Sobremesa>>() {});
+        return objectMapper.readValue(Paths.get(path).toFile(), type);
     }
 
     public static void escreverPedido(String fileName, Pedido pedido) throws IOException {
@@ -50,27 +41,20 @@ public class PedidoTeste {
             writer.write("Produtos:");
             writer.newLine();
             for (Produto produto : pedido.getProdutos()) {
-                writer.write("Nome: " + produto.getNome() + ", Valor: R$" + produto.getValor() + ", Código: " + produto.getCodigo());
-                if (produto instanceof Bebida) {
-                    writer.write(", Gelada: " + (((Bebida) produto).isGelada() ? "Sim" : "Não") + ", Tamanho: " + ((Bebida) produto).getTamanho() + ", Marca: " + ((Bebida) produto).getMarca());
-                } else if (produto instanceof Comida) {
-                    writer.write(", Peso: " + ((Comida) produto).getPeso() + "g" + ", Vegano: " + (((Comida) produto).isVegano() ? "Sim" : "Não") + ", Ingredientes: " + ((Comida) produto).getIngredientes());
-                } else if (produto instanceof Sobremesa) {
-                    writer.write(", Quantidade: " + ((Sobremesa) produto).getQuantidade() + "g" + ", Doce: " + (((Sobremesa) produto).isDoce() ? "Sim" : "Não") + ", Informação: " + ((Sobremesa) produto).getInformacao());
-                }
+                writer.write(produto.toString());
                 writer.newLine();
             }
         } catch (IOException e) {
-            System.err.println("Erro ao escrever o arquivo com layout diferente: " + e.getMessage());
+            throw new IOException("Erro ao escrever o arquivo: " + e.getMessage());
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws SolicitanteInvalidoException, IOException {
         String resourcesPath = "src/main/resources/";
 
-        List<Bebida> bebidas = lerBebidas(resourcesPath + "bebidas.json");
-        List<Comida> comidas = lerComidas(resourcesPath + "comidas.json");
-        List<Sobremesa> sobremesas = lerSobremesas(resourcesPath + "sobremesas.json");
+        List<Bebida> bebidas = lerProdutos(resourcesPath + "bebidas.json", new TypeReference<>() {});
+        List<Comida> comidas = lerProdutos(resourcesPath + "comidas.json", new TypeReference<>() {});
+        List<Sobremesa> sobremesas = lerProdutos(resourcesPath + "sobremesas.json", new TypeReference<>() {});
 
         Solicitante solicitanteJoao = new Solicitante("João", "123.456.789-00", "joao@email.com");
         Solicitante solicitanteMaria = new Solicitante("Maria", "321.654.987-00", "maria@email.com");

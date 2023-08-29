@@ -13,6 +13,7 @@ public class Pedido {
     private boolean web;
     private Solicitante solicitante;
     private List<Produto> produtos;
+    private String[] comentarios;
 
     public Pedido(String descricao, LocalDateTime dataHora, boolean confirmado, Solicitante solicitante, List<Produto> produtos) {
         this.descricao = descricao;

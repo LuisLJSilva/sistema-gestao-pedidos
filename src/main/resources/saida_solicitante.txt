@@ -1,18 +1,3 @@
-Nome: João
-CPF: 123.456.789-00
-Email: joao@gmail.com
-Nome: Maria
-CPF: 321.654.987-00
-Email: maria@gmail.com
-Nome: Pedro
-CPF: 111.222.333-00
-Email: pedro@gmail.com
-Nome: João
-CPF: 123.456.789-00
-Email: joao@gmail.com
-Nome: Maria
-CPF: 321.654.987-00
-Email: maria@gmail.com
-Nome: Pedro
-CPF: 111.222.333-00
-Email: pedro@gmail.com
+Solicitante: Nome: João, CPF: 123.456.789-00, Email: joao@gmail.com
+Solicitante: Nome: Maria, CPF: 321.654.987-00, Email: maria@gmail.com
+Solicitante: Nome: Pedro, CPF: 111.222.333-00, Email: pedro@gmail.com

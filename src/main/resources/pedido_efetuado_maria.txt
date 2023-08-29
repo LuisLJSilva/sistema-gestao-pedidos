@@ -1,9 +1,9 @@
 Pedido Maria:
 Descrição do Pedido: Almoço
-Data e Hora: 2023-08-23T23:55:45.158183
+Data e Hora: 2023-08-28T21:30:23.442332
 Confirmado: Sim
 Solicitante: Nome: Maria, CPF: 321.654.987-00, Email: maria@email.com
 Produtos:
-Nome: Refrigerante, Valor: R$5.0, Código: 456, Gelada: Não, Tamanho: 350.0, Marca: Coca-Cola
-Nome: Lasanha, Valor: R$15.0, Código: 101, Peso: 0.5g, Vegano: Não, Ingredientes: Massa, queijo, molho
-Nome: Sorvete, Valor: R$8.0, Código: 313, Quantidade: 0.5g, Doce: Sim, Informação: Baunilha
+Refrigerante - R$5.0 - Código: 456 - Não Gelada - Tamanho: 350.0ml - Marca: Coca-Cola
+Lasanha - R$15.0 - Código: 101 - Peso: 0.5kg - Não Vegano - Ingredientes: Massa, queijo, molho
+Sorvete - R$8.0 - Código: 313 - Quantidade: 0.5 - Doce - Informação: Baunilha

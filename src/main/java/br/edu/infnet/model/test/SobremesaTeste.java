@@ -20,7 +20,7 @@ public class SobremesaTeste {
             String saidaArquivo = "src/main/resources/saida_sobremesa.txt";
             for (Sobremesa sobremesa : sobremesas) {
                 System.out.println("Sobremesa: " + sobremesa.toString());
-                sobremesa.imprimirSobremesa(saidaArquivo); // Gravando em um arquivo específico
+                sobremesa.imprimirSobremesa(saidaArquivo);
             }
         } catch (IOException e) {
             System.err.println("Erro ao ler o arquivo: " + e.getMessage());

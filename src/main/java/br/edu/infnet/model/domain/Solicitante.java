@@ -1,5 +1,7 @@
 package br.edu.infnet.model.domain;
 
+import br.edu.infnet.model.domain.exceptions.SolicitanteInvalidoException;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.BufferedWriter;
@@ -19,7 +21,16 @@ public class Solicitante {
     public Solicitante() {
     }
 
-    public Solicitante(String nome, String cpf, String email) {
+    @JsonCreator
+    public Solicitante(
+            @JsonProperty("nome") String nome,
+            @JsonProperty("cpf") String cpf,
+            @JsonProperty("email") String email
+    ) throws SolicitanteInvalidoException {
+        // Validar CPF e Email, se necessário
+        if (nome == null || nome.trim().isEmpty()) {
+            throw new SolicitanteInvalidoException("O nome não pode ser vazio.");
+        }
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
@@ -71,4 +82,3 @@ public class Solicitante {
                 '}';
     }
 }
-

@@ -1,11 +1,13 @@
 package br.edu.infnet.model.domain;
 
+import br.edu.infnet.model.domain.exceptions.BebidaInvalidaException;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Set;
 
 
 public class Bebida extends Produto {
@@ -17,14 +19,23 @@ public class Bebida extends Produto {
     }
 
     @JsonCreator
-    public Bebida(@JsonProperty("nome") String nome, @JsonProperty("valor") float valor, @JsonProperty("codigo") int codigo, @JsonProperty("gelada") boolean gelada, @JsonProperty("tamanho") float tamanho, @JsonProperty("marca") String marca) {
-        super(nome, valor, codigo);
+    public Bebida(
+            @JsonProperty("nome") String nome,
+            @JsonProperty("valor") float valor,
+            @JsonProperty("codigo") int codigo,
+            @JsonProperty("gelada") boolean gelada,
+            @JsonProperty("tamanho") float tamanho,
+            @JsonProperty("marca") String marca,
+            @JsonProperty("categorias") Set<String> categorias
+    ) throws BebidaInvalidaException {
+        super(nome, valor, codigo, categorias);
         this.gelada = gelada;
+
         if (tamanho <= 0) {
-            this.tamanho = 1;
-        } else {
-            this.tamanho = tamanho;
+            throw new BebidaInvalidaException("O tamanho da bebida deve ser maior que zero.");
         }
+        this.tamanho = tamanho;
+
         this.marca = marca;
     }
 

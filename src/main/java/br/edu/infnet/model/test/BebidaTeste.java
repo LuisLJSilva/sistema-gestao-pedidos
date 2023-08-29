@@ -1,6 +1,7 @@
 package br.edu.infnet.model.test;
 
 import br.edu.infnet.model.domain.Bebida;
+import br.edu.infnet.model.domain.exceptions.ProdutoInvalidoException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -19,8 +20,15 @@ public class BebidaTeste {
 
             String saidaArquivo = "src/main/resources/saida_bebida.txt";
             for (Bebida bebida : bebidas) {
-                System.out.println("Bebida: " + bebida.toString());
-                bebida.imprimirBebida(saidaArquivo); // Gravando em um arquivo específico
+                try {
+                    if(bebida.getValor() <= 0) {
+                        throw new ProdutoInvalidoException("O valor do produto deve ser maior que zero.");
+                    }
+                    System.out.println("Bebida: " + bebida.toString());
+                    bebida.imprimirBebida(saidaArquivo);
+                } catch (ProdutoInvalidoException e) {
+                    System.err.println("Produto inválido: " + e.getMessage());
+                }
             }
         } catch (IOException e) {
             System.err.println("Erro ao ler o arquivo: " + e.getMessage());
