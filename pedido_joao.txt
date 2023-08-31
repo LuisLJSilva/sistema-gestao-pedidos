@@ -1,9 +1,0 @@
-Descrição do Pedido: Lanche
-Data e Hora: 21/08/2023 22:19:11
-Confirmado: Não
-Solicitante: João
-Produtos:
-  Café - R$3.0 - Código: 105 - Não Gelada - Tamanho: 150.0ml - Marca: Expresso
-  Sanduíche - R$8.0 - Código: 106 - Peso: 0.2kg - Não Vegano - Ingredientes: Pão, queijo, presunto
-  Bolo - R$6.0 - Código: 108 - Quantidade: 0.3 - Doce - Informação: Chocolate
-Total do Pedido: 17.0

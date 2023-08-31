@@ -1,3 +1,0 @@
-Pedido João:
-Descrição do Pedido: Lanche
-Data e Hora: 2023-08-23T23:43:16.563178

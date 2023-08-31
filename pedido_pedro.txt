@@ -1,9 +1,0 @@
-Descrição do Pedido: Almoço
-Data e Hora: 21/08/2023 22:19:11
-Confirmado: Sim
-Solicitante: Pedro
-Produtos:
-  Água - R$2.0 - Código: 109 - Não Gelada - Tamanho: 500.0ml - Marca: Mineral
-  Arroz e Feijão - R$12.0 - Código: 110 - Peso: 0.4kg - Vegano - Ingredientes: Arroz, feijão
-  Sorvete - R$5.0 - Código: 111 - Quantidade: 0.3 - Light - Informação: Morango
-Total do Pedido: 19.0
